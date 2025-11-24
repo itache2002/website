@@ -226,3 +226,132 @@ button:hover {
 .text-emerald-300 {
   color: #6ee7b7;
 }
+
+
+
+/* ===========================
+   📱 RESPONSIVE MEDIA QUERIES
+   =========================== */
+
+/* Tablet and small laptop (<= 1024px) */
+@media (max-width: 1024px) {
+  body {
+    font-size: 14px;
+  }
+
+  .min-h-screen {
+    padding: 12px;
+  }
+
+  .relative {
+    border-radius: 8px;
+  }
+
+  .px-4 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .py-2 {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .p-4 {
+    padding: 0.75rem;
+  }
+
+  /* keep terminal a bit shorter on small screens */
+  .overflow-y-auto {
+    max-height: 65vh;
+  }
+
+  button {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
+
+/* Mobile phones (<= 768px) */
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+  }
+
+  .min-h-screen {
+    align-items: flex-start;  /* terminal starts near top */
+    padding: 10px;
+  }
+
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl {
+    max-width: 100%;
+  }
+
+  .relative {
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+
+  /* tighter paddings inside terminal */
+  .px-4 {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+
+  .p-4 {
+    padding: 0.6rem;
+  }
+
+  /* make input + quick commands more compact */
+  input {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
+
+/* Very small phones (<= 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+
+  .min-h-screen {
+    padding: 8px;
+  }
+
+  .relative {
+    border-radius: 6px;
+  }
+
+  .px-4 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .p-4 {
+    padding: 0.5rem;
+  }
+
+  .mt-1 {
+    margin-top: 0.2rem;
+  }
+
+  .mb-1 {
+    margin-bottom: 0.2rem;
+  }
+
+  input {
+    font-size: 11px;
+  }
+
+  button {
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+}
