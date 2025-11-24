@@ -22,7 +22,7 @@ const TECH_JOKES = [
 const TerminalPortfolio = () => {
   const [currentPath, setCurrentPath] = useState('/');
   const [history, setHistory] = useState([
-    // Fancy welcome banner INSIDE terminal
+
     { type: 'output', content: '╔════════════════════════════════════════════════════════════╗' },
     { type: 'output', content: '║                                                            ║' },
     { type: 'output', content: '║        Welcome to UJWAL M\'s Terminal Portfolio 😎         ║' },
@@ -563,7 +563,7 @@ Tips:
       return [
         '╔════════════════════════════════════════════════════════════╗',
         '║                                                            ║',
-        '║       Welcome to UJWAL M\'s Terminal Portfolio 😎         ║',
+        '║       Welcome to UJWAL M\'s Portfolio 😎                  ║',
         '║                                                            ║',
         '║     System Status: ██████████ 100% OPERATIONAL             ║',
         '║     Terminal Version: v2.0-ELITE                           ║',
@@ -609,45 +609,6 @@ Tips:
     }
   };
 
-
-//   const handleCommand = (cmd) => {
-//     const trimmedCmd = cmd.trim();
-//     if (!trimmedCmd) return;
-
-//     if (showBanner) {
-//       setShowBanner(false);
-//     }
-
-//     addToHistory('input', `${getPrompt()} ${trimmedCmd}`);
-//     setCommandHistory((prev) => [...prev, trimmedCmd]);
-//     setHistoryIndex(-1);
-
-//     const [command, ...args] = trimmedCmd.split(' ');
-//     const cmdLower = command.toLowerCase();
-
-//     if (commands[cmdLower]) {
-//       const output = commands[cmdLower](args);
-//       if (output !== null && output !== undefined) {
-//         addToHistory('output', output);
-//       }
-//     } else {
-     
-//       const filePath =
-//         currentPath === '/' ? `/${cmdLower}` : `${currentPath}/${cmdLower}`;
-//       const file = fileSystem[filePath];
-
-//       if (file && file.type === 'file') {
-//         addToHistory('output', file.content);
-//       } else {
-//         addToHistory(
-//           'output',
-//           `Command not found: ${command}. Type 'help' for available commands.`
-//         );
-//       }
-//     }
-
-//     setInput('');
-//   };
     const handleCommand = (cmd) => {
     const trimmedCmd = cmd.trim();
     if (!trimmedCmd) return;
@@ -792,7 +753,7 @@ Tips:
                       color: '#f0fff4',
                     }}
                   >
-                    UJWAL M&apos;s Terminal Portfolio
+                    UJWAL M&apos;s Portfolio
                   </div>
                   <div
                     style={{
