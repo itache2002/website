@@ -26,20 +26,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # ⛔ removed: cache: npm (this was causing lockfile error)
+          # (no cache for now, simpler)
 
       - name: Install dependencies
-        run: npm install   # ⬅️ changed from `npm ci`
+        working-directory: ./ujwal-portfolio   # 👈 IMPORTANT
+        run: npm install
 
       - name: Build project
+        working-directory: ./ujwal-portfolio   # 👈 IMPORTANT
         run: npm run build
 
-      # If you use Vite, keep ./dist
-      # If CRA, change to ./build
+      # 👉 If you used Vite, keep dist
+      # 👉 If you used Create React App, change 'dist' to 'build'
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./ujwal-portfolio/dist   # or ./ujwal-portfolio/build
 
   deploy:
     runs-on: ubuntu-latest
