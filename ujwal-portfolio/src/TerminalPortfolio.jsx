@@ -549,6 +549,7 @@ Tips:
 
     clear: () => {
       setHistory([]);
+      setShowBanner(true);
       return null;
     },
 
@@ -609,44 +610,82 @@ Tips:
   };
 
 
-  const handleCommand = (cmd) => {
+//   const handleCommand = (cmd) => {
+//     const trimmedCmd = cmd.trim();
+//     if (!trimmedCmd) return;
+
+//     if (showBanner) {
+//       setShowBanner(false);
+//     }
+
+//     addToHistory('input', `${getPrompt()} ${trimmedCmd}`);
+//     setCommandHistory((prev) => [...prev, trimmedCmd]);
+//     setHistoryIndex(-1);
+
+//     const [command, ...args] = trimmedCmd.split(' ');
+//     const cmdLower = command.toLowerCase();
+
+//     if (commands[cmdLower]) {
+//       const output = commands[cmdLower](args);
+//       if (output !== null && output !== undefined) {
+//         addToHistory('output', output);
+//       }
+//     } else {
+     
+//       const filePath =
+//         currentPath === '/' ? `/${cmdLower}` : `${currentPath}/${cmdLower}`;
+//       const file = fileSystem[filePath];
+
+//       if (file && file.type === 'file') {
+//         addToHistory('output', file.content);
+//       } else {
+//         addToHistory(
+//           'output',
+//           `Command not found: ${command}. Type 'help' for available commands.`
+//         );
+//       }
+//     }
+
+//     setInput('');
+//   };
+    const handleCommand = (cmd) => {
     const trimmedCmd = cmd.trim();
     if (!trimmedCmd) return;
 
-    if (showBanner) {
-      setShowBanner(false);
+    const [command, ...args] = trimmedCmd.split(' ');
+    const cmdLower = command.toLowerCase();
+
+    // 🔹 Hide top banner only for NON-clear commands
+    if (showBanner && cmdLower !== 'clear') {
+        setShowBanner(false);
     }
 
     addToHistory('input', `${getPrompt()} ${trimmedCmd}`);
     setCommandHistory((prev) => [...prev, trimmedCmd]);
     setHistoryIndex(-1);
 
-    const [command, ...args] = trimmedCmd.split(' ');
-    const cmdLower = command.toLowerCase();
-
     if (commands[cmdLower]) {
-      const output = commands[cmdLower](args);
-      if (output !== null && output !== undefined) {
+        const output = commands[cmdLower](args);
+        if (output !== null && output !== undefined) {
         addToHistory('output', output);
-      }
+        }
     } else {
-     
-      const filePath =
+        const filePath =
         currentPath === '/' ? `/${cmdLower}` : `${currentPath}/${cmdLower}`;
-      const file = fileSystem[filePath];
+        const file = fileSystem[filePath];
 
-      if (file && file.type === 'file') {
+        if (file && file.type === 'file') {
         addToHistory('output', file.content);
-      } else {
+        } else {
         addToHistory(
-          'output',
-          `Command not found: ${command}. Type 'help' for available commands.`
+            'output',
+            `Command not found: ${command}. Type 'help' for available commands.`
         );
-      }
+        }
     }
 
     setInput('');
-  };
+    };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
