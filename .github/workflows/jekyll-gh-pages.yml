@@ -2,8 +2,8 @@ name: Deploy React App to GitHub Pages
 
 on:
   push:
-    branches: [ main ]   # run when you push to main
-  workflow_dispatch:      # allow manual trigger
+    branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -26,16 +26,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          # ⛔ removed: cache: npm (this was causing lockfile error)
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install   # ⬅️ changed from `npm ci`
 
       - name: Build project
         run: npm run build
 
-      # 👉 If you use Vite, keep path: ./dist
-      # 👉 If you use CRA, change to: ./build
+      # If you use Vite, keep ./dist
+      # If CRA, change to ./build
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
