@@ -25,7 +25,7 @@ const TerminalPortfolio = () => {
 
     { type: 'output', content: '╔════════════════════════════════════════════════════════════╗' },
     { type: 'output', content: '║                                                            ║' },
-    { type: 'output', content: '║        Welcome to UJWAL M\'s  Portfolio 😎         ║' },
+    { type: 'output', content: '║        Welcome to UJWAL M\'s  Portfolio 😎                 ║' },
     { type: 'output', content: '║                                                            ║' },
     { type: 'output', content: '║     System Status: ██████████ 100% OPERATIONAL             ║' },
     { type: 'output', content: '║     Terminal Version: v2.0-ELITE                           ║' },
