@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// Random tech jokes for the top banner
 const TECH_JOKES = [
   'Why did the developer go broke? Because he used up all his cache. 🧾',
   'There are 10 types of people in the world: those who understand binary and those who don’t. 💾',
@@ -60,11 +59,8 @@ const TerminalPortfolio = () => {
 
   const inputRef = useRef(null);
   const terminalRef = useRef(null);
-  const bottomRef = useRef(null); // for auto-scroll
+  const bottomRef = useRef(null); 
 
-  // ─────────────────────────────────────────────
-  // PORTFOLIO "FILE SYSTEM"
-  // ─────────────────────────────────────────────
   const fileSystem = {
     '/': {
       type: 'directory',
@@ -399,9 +395,6 @@ I enjoy:
     },
   };
 
-  // ─────────────────────────────────────────────
-  // EFFECTS
-  // ─────────────────────────────────────────────
   useEffect(() => {
     // auto-scroll to bottom whenever history changes
     if (bottomRef.current) {
@@ -413,9 +406,6 @@ I enjoy:
     inputRef.current?.focus();
   }, []);
 
-  // ─────────────────────────────────────────────
-  // HELPERS
-  // ─────────────────────────────────────────────
   const getPrompt = () => {
     return `ujwal@portfolio:${currentPath}$`;
   };
@@ -424,7 +414,6 @@ I enjoy:
     setHistory((prev) => [...prev, { type, content }]);
   };
 
-  // Make URLs clickable in output
   const renderWithLinks = (text) => {
     if (!text) return null;
     const urlRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)/g;
@@ -462,9 +451,7 @@ I enjoy:
     return parts;
   };
 
-  // ─────────────────────────────────────────────
-  // COMMAND IMPLEMENTATION
-  // ─────────────────────────────────────────────
+
   const commands = {
     help: () => {
       return `
@@ -585,9 +572,6 @@ Tips:
     },
   };
 
-  // ─────────────────────────────────────────────
-  // TAB AUTOCOMPLETE
-  // ─────────────────────────────────────────────
   const handleTabAutocomplete = () => {
     const trimmed = input.trim();
     if (!trimmed) return;
@@ -610,7 +594,7 @@ Tips:
       return;
     }
 
-    // Autocomplete commands or top-level files (about, skills, etc.)
+    
     const commandNames = Object.keys(commands);
     const rootEntries = fileSystem['/'].content;
     const candidates = [...new Set([...commandNames, ...rootEntries])].filter(
@@ -624,14 +608,11 @@ Tips:
     }
   };
 
-  // ─────────────────────────────────────────────
-  // CORE COMMAND HANDLER
-  // ─────────────────────────────────────────────
+
   const handleCommand = (cmd) => {
     const trimmedCmd = cmd.trim();
     if (!trimmedCmd) return;
 
-    // hide top banner on first interaction
     if (showBanner) {
       setShowBanner(false);
     }
@@ -649,7 +630,7 @@ Tips:
         addToHistory('output', output);
       }
     } else {
-      // Shortcut: if user types "about", "skills", etc. directly
+     
       const filePath =
         currentPath === '/' ? `/${cmdLower}` : `${currentPath}/${cmdLower}`;
       const file = fileSystem[filePath];
@@ -667,9 +648,6 @@ Tips:
     setInput('');
   };
 
-  // ─────────────────────────────────────────────
-  // KEY HANDLER
-  // ─────────────────────────────────────────────
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleCommand(input);
@@ -701,9 +679,7 @@ Tips:
     }
   };
 
-  // ─────────────────────────────────────────────
-  // RENDER
-  // ─────────────────────────────────────────────
+
   const quickCommands = [
     'help',
     'ls',
